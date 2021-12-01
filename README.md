@@ -2,6 +2,8 @@
   <h1>Microfed</h1>
 </div>
 
+![logo](./images/microfed.png)
+
 <div align="center">  
 Micro Services Meets the Fediverse
 </div>
