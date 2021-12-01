@@ -22,7 +22,7 @@
   
 # ⚡️ Introduction
 
-Tthis project is still at concept stage and aims to brain storm the intersection of [micro servcies](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse).
+Tthis project is still at concept stage and aims to brainstorm the intersection of [micro servcies](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse).
 
 The idea is that each component of a fediverse server can be composed from smaller services.
 
@@ -52,7 +52,7 @@ The Profile can be self hosted, or part of a multi user service.  It should be a
 
 # Inbox
 
-The Inbox should be a place where people can send messages in JSON.  The micro service can filter out messages based on user preferences.  The message format should be as far as possible compatible with Activity Pub JSON.  Signatures can be used to verify the authenticity of a message
+The Inbox should be a place where people can send messages in JSON.  The micro service can filter out messages based on user preferences.  The message format should be as far as possible compatible with Activity Pub JSON.  Signatures can be used to verify the authenticity of a message.
 
 # Outbox
 
