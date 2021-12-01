@@ -22,7 +22,7 @@
   
 # ⚡️ Introduction
 
-Tthis project is still at concept stage and aims to brainstorm the intersection of [micro servcies](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse).
+This project is still at concept stage and aims to brainstorm the intersection of [micro servcies](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse).
 
 The idea is that each component of a fediverse server can be composed from smaller services.
 
@@ -34,21 +34,21 @@ These include:
 
 # ✍️ Profile
 
-Your profile page is the starting point for microfed services.  It will generally be an HTTP page, but the data should be agnostic to HTTP or any other protocol so that it can live in a database, or run over a P2P network.
+Your Profile page is the starting point for microfed services.  It will generally be an HTTP page, but the data should be agnostic to HTTP or any other protocol so that it can live in a database, or run over a P2P network.
 
-The profile will be in HTML, with the data in in JSON(-LD).  It will contain:
+The Profile will be in HTML, with the data in in JSON(-LD).  It will contain:
 
-&nbsp;&nbsp;✓&nbsp;The profile page  
+&nbsp;&nbsp;✓&nbsp;The Profile page  
 &nbsp;&nbsp;✓&nbsp;The User / Actor / Agent  
 &nbsp;&nbsp;✓&nbsp;Attributes about the User  
 &nbsp;&nbsp;✓&nbsp;Ability to store a public key  
 &nbsp;&nbsp;✓&nbsp;A list of connections (friends, knows, followers etc.)  
-&nbsp;&nbsp;✓&nbsp;Endpoint for inbox  
-&nbsp;&nbsp;✓&nbsp;Endpoint for outbox  
+&nbsp;&nbsp;✓&nbsp;Endpoint for Inbox  
+&nbsp;&nbsp;✓&nbsp;Endpoint for Outbox  
 &nbsp;&nbsp;✓&nbsp;Authentictation endpoints  
 &nbsp;&nbsp;✓&nbsp;Arbitrary fields specified by the user  
 
-The Profile can be self hosted, or part of a multi user service.  It should be able to run on a mobile device, or in the browser.
+The Profile can be self-hosted, or part of a multi user service.  It should be able to run on a mobile device, or in the browser.
 
 # Inbox
 
@@ -56,7 +56,7 @@ The Inbox should be a place where people can send messages in JSON.  The micro s
 
 # Outbox
 
-The outbox is a service that allows messages to be sent to other inboxes.  It should also have to ability to store a private key on behalf of a user, in order to sign outgoing messages.  It should be able to route messages to the right endpoints.
+The Outbox is a service that allows messages to be sent to other inboxes.  It should also have to ability to store a private key on behalf of a user, in order to sign outgoing messages.  It should be able to route messages to the right endpoints.
 
 # Authentication
 
