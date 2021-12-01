@@ -15,14 +15,10 @@ Micro Services Meets the Fediverse
   
 ---
   
-<div align="center">
-
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/micro-fed/microfed.org/blob/gh-pages/LICENSE)
 [![npm](https://img.shields.io/npm/v/microfed)](https://npmjs.com/package/microfed)
 [![npm](https://img.shields.io/npm/dw/microfed.svg)](https://npmjs.com/package/microfed)
 [![Github Stars](https://img.shields.io/github/stars/micro-fed/microfed.org.svg)](https://github.com/micro-fed/microfed.org/)
-</div>
-
   
 ## Introduction
 
