@@ -22,7 +22,7 @@
   
 # Introduction
 
-Tthis project is still at concept stage and aims to brain storm the intersection of micro servcies and the fediverse
+Tthis project is still at concept stage and aims to brain storm the intersection of [micro servcies](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse)
 
 The idea is that each component of a fediverse server can be composed from smaller services
 
