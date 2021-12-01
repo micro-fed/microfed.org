@@ -52,7 +52,7 @@ The Profile can be self-hosted, or part of a multi user service.  It should be a
 
 # Inbox
 
-The Inbox should be a place where people can send messages in JSON.  The micro service can filter out messages based on user preferences.  The message format should be as far as possible compatible with Activity Pub JSON.  Signatures can be used to verify the authenticity of a message
+The Inbox should be a place where people can send messages in JSON.  The micro service can filter out messages based on user preferences.  The message format should be as far as possible compatible with Activity Pub JSON.  Signatures can be used to verify the authenticity of a message.
 
 # Outbox
 
