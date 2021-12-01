@@ -60,7 +60,7 @@ The Outbox is a service that allows messages to be sent to other inboxes.  It sh
 
 # Authentication
 
-Initially, strong authentication via PKI will be supported.  Delegated authenticaiton, such as OAuth and OIDC may be considered desirable.  A loosely coupled authentication suite will allow the user to add different authentication modules.  This could also work with enterprise authentication. 
+Initially, strong authentication via PKI will be supported.  Delegated authentication, such as OAuth and OIDC may be considered desirable.  A loosely coupled authentication suite will allow the user to add different authentication modules.  This could also work with enterprise authentication. 
 
 # ⚖️ License
 
