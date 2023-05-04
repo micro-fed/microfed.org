@@ -57,15 +57,15 @@ The Profile will be in HTML, with the data in in JSON(-LD).  It will contain:
 
 The Profile can be self-hosted, or part of a multi user service.  It should be able to run on a mobile device, or in the browser.
 
-📬 Inbox
+# 📬 Inbox
 
 The Inbox should be a place where people can send messages in JSON.  The micro service can filter out messages based on user preferences.  The message format should be as far as possible compatible with Activity Pub JSON.  Signatures can be used to verify the authenticity of a message.
 
-📤 Outbox
+# 📤 Outbox
 
 The Outbox is a service that allows messages to be sent to other inboxes.  It should also have to ability to store a private key on behalf of a user, in order to sign outgoing messages.  It should be able to route messages to the right endpoints.
 
-🔐 Authentication
+# 🔐 Authentication
 
 Initially, strong authentication via PKI will be supported.  Delegated authentication, such as OAuth and OIDC may be considered desirable.  A loosely coupled authentication suite will allow the user to add different authentication modules.  This could also work with enterprise authentication. 
 
