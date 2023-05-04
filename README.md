@@ -24,6 +24,10 @@
 
 This project is still at concept stage and aims to brainstorm the intersection of [micro services](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse).
 
+# 🎨 Design
+
+Microfed follows a modular design approach, ensuring flexibility and maintainability. The high-level design focuses on the interaction between microservices and the fediverse.
+
 The idea is that each component of a fediverse server can be composed from smaller services.
 
 These include:
@@ -31,6 +35,9 @@ These include:
 - [Inbox](#Inbox)
 - [Outbox](#Outbox)
 - [Authentication](#Authentication)
+
+[Design Documentation](./DESIGN.md)
+
 
 # ✍️ Profile
 
