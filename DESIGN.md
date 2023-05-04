@@ -37,6 +37,8 @@ The Profile Module consists of the following features:
 - Support for self-hosted and multi-user services.
 - Compatibility with mobile devices and browsers.
 
+[Profile Design](./PROFILE.md)
+
 ## Inbox Module
 
 The Inbox Module is designed to offer the following functionality:
