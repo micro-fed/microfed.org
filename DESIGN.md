@@ -28,6 +28,8 @@ This document provides a high-level overview of Microfed's design, outlining the
 
 The Microfed Core serves as the central module that manages communication between different components and provides utility functions.
 
+[Core Design](./CORE.md)
+
 ## Profile Module
 
 The Profile Module consists of the following features:
@@ -47,6 +49,8 @@ The Inbox Module is designed to offer the following functionality:
 - Methods for filtering messages based on user preferences.
 - Support for Activity Pub JSON compatibility and message signatures.
 
+[Inbox Design](./INBOX.md)
+
 ## Outbox Module
 
 The Outbox Module includes the following capabilities:
@@ -54,6 +58,8 @@ The Outbox Module includes the following capabilities:
 - A class representing a user's outbox, which sends messages to other inboxes.
 - Methods for storing private keys and signing outgoing messages.
 - Support for routing messages to appropriate endpoints.
+
+[Outbox Design](./OUTBOX.md)
 
 ## Authentication Module
 
@@ -64,9 +70,13 @@ The Authentication Module provides a flexible and extensible authentication syst
 - Support for delegated authentication (e.g., OAuth, OIDC) if needed.
 - Integration with enterprise authentication systems.
 
+[Authentication Design](./AUTHENTICATION.md)
+
 ## Utility Functions
 
 The Utility Functions module offers various general-purpose functions, such as data validation, conversion, and formatting.
+
+[Utility Design](./UTILS.md)
 
 ---
 
