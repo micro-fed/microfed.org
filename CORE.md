@@ -1,15 +1,15 @@
-# Microfed Core
+# 🧩 Microfed Core
 
 Microfed Core is the central module that manages communication between different components of the Microfed framework and provides utility functions. This document outlines the core design of Microfed Core, focusing on its integration with ActivityPub.
 
 ## Table of Contents
 
-- [Core Components](#core-components)
-- [ActivityPub Integration](#activitypub-integration)
-- [API Interface](#api-interface)
-- [Error Handling and Logging](#error-handling-and-logging)
+- [🔧 Core Components](#core-components)
+- [🌐 ActivityPub Integration](#activitypub-integration)
+- [🗄️ API Interface](#api-interface)
+- [🔍 Error Handling and Logging](#error-handling-and-logging)
 
-## Core Components
+## 🔧 Core Components
 
 Microfed Core comprises the following components:
 
@@ -18,7 +18,7 @@ Microfed Core comprises the following components:
 3. **ActivityPub Adapter**: Provides a set of utility functions and classes to interact with ActivityPub, parse and serialize data, and manage ActivityPub objects.
 4. **Networking**: Handles networking tasks, such as HTTP requests, WebSocket connections, and peer-to-peer communication.
 
-## ActivityPub Integration
+## 🌐 ActivityPub Integration
 
 Microfed Core integrates with ActivityPub using the ActivityPub Adapter component. The adapter offers the following functionality:
 
@@ -27,7 +27,7 @@ Microfed Core integrates with ActivityPub using the ActivityPub Adapter componen
 3. **Activity Handling**: Implements methods for processing incoming and outgoing activities, such as Create, Update, Delete, Follow, and Like, according to the ActivityPub specification.
 4. **ActivityPub API**: Offers an API for interacting with ActivityPub services, such as fetching and updating Actor profiles, sending activities, and managing followers and following collections.
 
-## API Interface
+## 🗄️ API Interface
 
 Microfed Core exposes a simple and intuitive API interface for developers to interact with the framework and its modules. The API includes methods for:
 
@@ -35,7 +35,7 @@ Microfed Core exposes a simple and intuitive API interface for developers to int
 2. **ActivityPub Interaction**: Sending and receiving ActivityPub activities, managing Actor profiles, and handling collections.
 3. **Utility Functions**: Accessing common utility functions, such as data validation, conversion, and formatting.
 
-## Error Handling and Logging
+## 🔍 Error Handling and Logging
 
 Microfed Core provides a robust error handling and logging system to ensure that any issues or errors are properly reported and logged. This system includes:
 

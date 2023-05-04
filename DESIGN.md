@@ -17,20 +17,20 @@ This document provides a high-level overview of Microfed's design, outlining the
 
 ## Table of Contents
 
-- [Microfed Core](#microfed-core)
-- [Profile Module](#profile-module)
-- [Inbox Module](#inbox-module)
-- [Outbox Module](#outbox-module)
-- [Authentication Module](#authentication-module)
-- [Utility Functions](#utility-functions)
+- [🧩 Microfed Core](#microfed-core)
+- [👥 Profile Module](#profile-module)
+- [📥 Inbox Module](#inbox-module)
+- [📤 Outbox Module](#outbox-module)
+- [🔐 Authentication Module](#authentication-module)
+- [🛠️ Utility Functions](#utility-functions)
 
-## Microfed Core
+## 🧩 Microfed Core
 
 The Microfed Core serves as the central module that manages communication between different components and provides utility functions.
 
 [Core Design](./CORE.md)
 
-## Profile Module
+## 👥 Profile Module
 
 The Profile Module consists of the following features:
 
@@ -41,7 +41,7 @@ The Profile Module consists of the following features:
 
 [Profile Design](./PROFILE.md)
 
-## Inbox Module
+## 📥 Inbox Module
 
 The Inbox Module is designed to offer the following functionality:
 
@@ -51,7 +51,7 @@ The Inbox Module is designed to offer the following functionality:
 
 [Inbox Design](./INBOX.md)
 
-## Outbox Module
+## 📤 Outbox Module
 
 The Outbox Module includes the following capabilities:
 
@@ -61,7 +61,7 @@ The Outbox Module includes the following capabilities:
 
 [Outbox Design](./OUTBOX.md)
 
-## Authentication Module
+## 🔐 Authentication Module
 
 The Authentication Module provides a flexible and extensible authentication system:
 
@@ -72,7 +72,7 @@ The Authentication Module provides a flexible and extensible authentication syst
 
 [Authentication Design](./AUTHENTICATION.md)
 
-## Utility Functions
+## 🛠️ Utility Functions
 
 The Utility Functions module offers various general-purpose functions, such as data validation, conversion, and formatting.
 
