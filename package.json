@@ -1,6 +1,6 @@
 {
   "name": "microfed",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "microfed",
   "main": "index.js",
   "scripts": {
