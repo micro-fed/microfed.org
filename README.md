@@ -54,6 +54,7 @@ The Profile will be in HTML, with the data in in JSON(-LD).  It will contain:
 &nbsp;&nbsp;✓&nbsp;Endpoint for Outbox  
 &nbsp;&nbsp;✓&nbsp;Authentictation endpoints  
 &nbsp;&nbsp;✓&nbsp;Arbitrary fields specified by the user  
+&nbsp;&nbsp;✓&nbsp;Nostr integration  
 
 The Profile can be self-hosted, or part of a multi user service.  It should be able to run on a mobile device, or in the browser.
 
