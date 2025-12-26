@@ -1,10 +1,20 @@
 {
   "name": "microfed",
-  "version": "0.0.12",
-  "description": "microfed",
+  "version": "0.1.0",
+  "description": "Minimal, modular ActivityPub microservices",
+  "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./profile": "./src/profile.js",
+    "./auth": "./src/auth.js",
+    "./webfinger": "./src/webfinger.js",
+    "./inbox": "./src/inbox.js",
+    "./outbox": "./src/outbox.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "example": "node example/server.js",
+    "test": "node --test test/"
   },
   "repository": {
     "type": "git",
@@ -15,5 +25,13 @@
   "bugs": {
     "url": "https://github.com/micro-fed/microfed.org/issues"
   },
-  "homepage": "https://github.com/micro-fed/microfed.org#readme"
+  "homepage": "https://microfed.org",
+  "keywords": [
+    "activitypub",
+    "fediverse",
+    "microservices",
+    "federation",
+    "activitystreams",
+    "webfinger"
+  ]
 }
