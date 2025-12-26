@@ -3,81 +3,209 @@
   <h1><a href="https://microfed.org/">Microfed</a></h1>
 </div>
 
-<div align="center">  
-<i>Micro Services Meets the Fediverse</i>
-</div>
-
----
-
 <div align="center">
-<h4>Documentation</h4>
+<i>Minimal, modular ActivityPub microservices</i>
 </div>
-  
+
 ---
-  
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/micro-fed/microfed.org/blob/gh-pages/LICENSE)
 [![npm](https://img.shields.io/npm/v/microfed)](https://npmjs.com/package/microfed)
 [![npm](https://img.shields.io/npm/dw/microfed.svg)](https://npmjs.com/package/microfed)
 [![Github Stars](https://img.shields.io/github/stars/micro-fed/microfed.org.svg)](https://github.com/micro-fed/microfed.org/)
-  
-# ⚡️ Introduction
 
-This project is still at concept stage and aims to brainstorm the intersection of [micro services](https://en.wikipedia.org/wiki/Microservices) and the [fediverse](https://en.wikipedia.org/wiki/Fediverse).
+## Features
 
-# 🎨 Design
+- **Pure JavaScript** — No TypeScript, no build step
+- **Zero dependencies** — Only Node.js built-ins
+- **Modular** — Use only what you need
+- **Fast** — Minimal overhead
+- **Standards compliant** — ActivityPub, WebFinger, HTTP Signatures
 
-Microfed follows a modular design approach, ensuring flexibility and maintainability. The high-level design focuses on the interaction between microservices and the fediverse.
+## Install
 
-The idea is that each component of a fediverse server can be composed from smaller services.
+```bash
+npm install microfed
+```
 
-These include:
-- [Profile](#Profile)
-- [Inbox](#Inbox)
-- [Outbox](#Outbox)
-- [Authentication](#Authentication)
+## Quick Start
 
-[Design Documentation](./DESIGN.md)
+```javascript
+import { profile, auth, outbox } from 'microfed'
 
+// Generate keypair for signing
+const { publicKey, privateKey } = auth.generateKeypair()
 
-# ✍️ Profile
+// Create an actor
+const actor = profile.createActor({
+  id: 'https://example.com/users/alice',
+  username: 'alice',
+  name: 'Alice',
+  publicKey
+})
 
-Your Profile page is the starting point for microfed services.  It will generally be an HTTP page, but the data should be agnostic to HTTP or any other protocol so that it can live in a database, or run over a P2P network.
+// Create a post
+const note = outbox.createNote({
+  actor: actor.id,
+  content: '<p>Hello, Fediverse!</p>'
+})
 
-The Profile will be in HTML, with the data in in JSON(-LD).  It will contain:
+// Wrap in Create activity
+const activity = outbox.wrapCreate(actor.id, note)
 
-&nbsp;&nbsp;✓&nbsp;The Profile page  
-&nbsp;&nbsp;✓&nbsp;The User / Actor / Agent  
-&nbsp;&nbsp;✓&nbsp;Attributes about the User  
-&nbsp;&nbsp;✓&nbsp;Ability to store a public key  
-&nbsp;&nbsp;✓&nbsp;A list of connections (friends, knows, followers etc.)  
-&nbsp;&nbsp;✓&nbsp;Endpoint for Inbox  
-&nbsp;&nbsp;✓&nbsp;Endpoint for Outbox  
-&nbsp;&nbsp;✓&nbsp;Authentictation endpoints  
-&nbsp;&nbsp;✓&nbsp;Arbitrary fields specified by the user  
-&nbsp;&nbsp;✓&nbsp;Nostr integration  
+// Send to a remote inbox
+await outbox.send({
+  activity,
+  inbox: 'https://remote.example/users/bob/inbox',
+  privateKey,
+  keyId: `${actor.id}#main-key`
+})
+```
 
-The Profile can be self-hosted, or part of a multi user service.  It should be able to run on a mobile device, or in the browser.
+## Modules
 
-[Profile Design](./PROFILE.md)
+### profile — Actor generation
 
-# 📬 Inbox
+```javascript
+import { createActor, createMinimalActor } from 'microfed/profile'
 
-The Inbox should be a place where people can send messages in JSON.  The micro service can filter out messages based on user preferences.  The message format should be as far as possible compatible with Activity Pub JSON.  Signatures can be used to verify the authenticity of a message.
+const actor = createActor({
+  id: 'https://example.com/users/alice',
+  username: 'alice',
+  name: 'Alice',
+  summary: '<p>Hello!</p>',
+  publicKey: '-----BEGIN PUBLIC KEY-----...',
+  icon: 'https://example.com/avatar.png'
+})
+```
 
-[Inbox Design](./INBOX.md)
+### auth — Keypairs and HTTP Signatures
 
-# 📤 Outbox
+```javascript
+import { generateKeypair, sign, verify } from 'microfed/auth'
 
-The Outbox is a service that allows messages to be sent to other inboxes.  It should also have to ability to store a private key on behalf of a user, in order to sign outgoing messages.  It should be able to route messages to the right endpoints.
+// Generate RSA keypair
+const { publicKey, privateKey } = generateKeypair()
 
-[Outbox Design](./OUTBOX.md)
+// Sign a request
+const headers = sign({
+  privateKey,
+  keyId: 'https://example.com/users/alice#main-key',
+  method: 'POST',
+  url: 'https://remote.example/inbox',
+  body: JSON.stringify(activity)
+})
 
-# 🔐 Authentication
+// Verify incoming signature
+const valid = verify({
+  publicKey,
+  signature: req.headers.signature,
+  method: 'POST',
+  path: '/inbox',
+  headers: req.headers
+})
+```
 
-Initially, strong authentication via PKI will be supported.  Delegated authentication, such as OAuth and OIDC may be considered desirable.  A loosely coupled authentication suite will allow the user to add different authentication modules.  This could also work with enterprise authentication. 
+### webfinger — Discovery
 
-[Authentication Design](./AUTHENTICATION.md)
+```javascript
+import { createResponse, lookup, resolve } from 'microfed/webfinger'
 
-# ⚖️ License
+// Create WebFinger response
+const response = createResponse(
+  'alice@example.com',
+  'https://example.com/users/alice'
+)
 
-- MIT
+// Lookup remote actor
+const actor = await resolve('bob@remote.example')
+```
+
+### inbox — Receive activities
+
+```javascript
+import { createHandler } from 'microfed/inbox'
+
+const handler = createHandler({
+  getPublicKey: async (keyId) => {
+    // Fetch and return public key for keyId
+  },
+  handlers: {
+    Follow: async (activity) => {
+      console.log(`Follow from ${activity.actor}`)
+    },
+    Create: async (activity) => {
+      console.log(`New post: ${activity.object.content}`)
+    }
+  }
+})
+```
+
+### outbox — Send activities
+
+```javascript
+import { createNote, createFollow, send, deliver } from 'microfed/outbox'
+
+// Create a post
+const note = createNote({
+  actor: 'https://example.com/users/alice',
+  content: '<p>Hello!</p>'
+})
+
+// Create a follow
+const follow = createFollow(
+  'https://example.com/users/alice',
+  'https://remote.example/users/bob'
+)
+
+// Deliver to multiple inboxes
+const results = await deliver({
+  activity,
+  inboxes: ['https://server1.example/inbox', 'https://server2.example/inbox'],
+  privateKey,
+  keyId: 'https://example.com/users/alice#main-key'
+})
+```
+
+## Example Server
+
+Run the demo server:
+
+```bash
+npm run example
+# → http://localhost:3000
+```
+
+Test it:
+
+```bash
+# WebFinger
+curl "http://localhost:3000/.well-known/webfinger?resource=acct:alice@localhost:3000"
+
+# Actor
+curl -H "Accept: application/activity+json" http://localhost:3000/users/alice
+```
+
+## Testing
+
+```bash
+npm test
+```
+
+## Design
+
+Microfed decomposes a fediverse server into modular microservices:
+
+| Module | Purpose |
+|--------|---------|
+| **profile** | Actor/user representation |
+| **auth** | Cryptographic identity and signatures |
+| **webfinger** | Actor discovery |
+| **inbox** | Receive and process activities |
+| **outbox** | Create and send activities |
+
+Each module can be used independently or combined. See the [Design Documentation](./DESIGN.md) for architecture details.
+
+## License
+
+MIT

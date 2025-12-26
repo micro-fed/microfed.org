@@ -14,7 +14,7 @@
   },
   "scripts": {
     "example": "node example/server.js",
-    "test": "node --test test/"
+    "test": "node --test 'test/*.test.js'"
   },
   "repository": {
     "type": "git",
