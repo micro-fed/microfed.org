@@ -41,25 +41,54 @@ export function createActivity(options) {
 
 /**
  * Create a Note (post)
- * @param {Object} options - Note options
- * @param {string} options.actor - Author's actor ID
- * @param {string} options.content - HTML content
+ * Supports two call signatures:
+ * - createNote(actor, content, options) - positional
+ * - createNote({ actor, content, ...options }) - object
+ *
+ * @param {string|Object} actorOrOptions - Actor ID or options object
+ * @param {string} [content] - HTML content (if using positional args)
+ * @param {Object} [options] - Additional options (if using positional args)
  * @param {string} [options.id] - Note ID (auto-generated if not provided)
- * @param {boolean} [options.public=true] - Make post public
+ * @param {Array} [options.to] - Primary recipients
+ * @param {Array} [options.cc] - Secondary recipients
  * @param {string} [options.inReplyTo] - ID of post being replied to
  * @returns {Object} Note object
  */
-export function createNote(options) {
-  const { actor, content, public: isPublic = true, inReplyTo } = options
+export function createNote(actorOrOptions, content, options = {}) {
+  // Support both call signatures
+  let actor, noteContent, noteOptions
+  if (typeof actorOrOptions === 'object') {
+    // Object signature: createNote({ actor, content, ... })
+    actor = actorOrOptions.actor
+    noteContent = actorOrOptions.content
+    noteOptions = actorOrOptions
+  } else {
+    // Positional signature: createNote(actor, content, options)
+    actor = actorOrOptions
+    noteContent = content
+    noteOptions = options
+  }
+
+  // Handle public/private addressing
+  const isPublic = noteOptions.public !== false
+  const defaultTo = isPublic ? [PUBLIC] : []
+  const defaultCc = isPublic ? [`${actor}/followers`] : []
+
+  const {
+    id,
+    to = defaultTo,
+    cc = defaultCc,
+    inReplyTo
+  } = noteOptions
 
   const note = {
     type: 'Note',
-    id: options.id || `${actor}/notes/${Date.now()}`,
+    id: id || `${actor}/notes/${Date.now()}`,
     attributedTo: actor,
-    content,
+    content: noteContent,
     published: new Date().toISOString(),
-    to: isPublic ? [PUBLIC] : [],
-    cc: isPublic ? [`${actor}/followers`] : []
+    to,
+    cc
   }
 
   if (inReplyTo) note.inReplyTo = inReplyTo

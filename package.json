@@ -1,6 +1,6 @@
 {
   "name": "microfed",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Minimal, modular ActivityPub microservices",
   "type": "module",
   "main": "index.js",
